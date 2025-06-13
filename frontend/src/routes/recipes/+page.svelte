@@ -1,31 +1,19 @@
-<!-- Imports -->
-<script lang="ts">
-
-    // Components
+<!-- Imports and Binds -->
+<script>
     import Header from "$lib/components/Header/Header.svelte";
-    import MobileNavbarPopup from "$lib/components/MobileNavbarPopup/MobileNavbarPopup.svelte";
-    import SlideshowHero from "$lib/components/SlideshowHero/SlideshowHero.svelte";
+    import SelectionCarouselMain from "$lib/components/SelectionCarouselMain/SelectionCarouselMain.svelte";
     import RecipesToInspire from "$lib/components/RecipesToInspire/RecipesToInspire.svelte";
     import FridgeIngredientsFeature from "$lib/components/FridgeIngredientsFeature/FridgeIngredientsFeature.svelte";
     import Footer from "$lib/components/Footer/Footer.svelte";
 
-    // Variable to check if burger icon was clicked
+    let currentPage = "Recipes";
+
     let burgerClicked = false;
-
-    // Current page
-    let currentPage = "Home";
-
 </script>
 
-<!-- Master Container -->
+<!-- Recipes Page -->
 <div>
-    {#if burgerClicked}
-        <MobileNavbarPopup  bind:currentPage bind:burgerClicked></MobileNavbarPopup>
 
-    {:else}
-        <div></div>
-
-    {/if}
 
     <div draggable="false" class="h-dvh max-h-dvh w-full max-w-dvw overflow-x-hidden overflow-y-auto p-4 pt-16 bg-[#e3f0eb] relative">
 
@@ -45,8 +33,8 @@
 
                 <div class="flex flex-col gap-4 md:gap-6 lg:gap-8 h-fit">
 
-                    <!-- Slideshow for Hero Section -->
-                    <SlideshowHero></SlideshowHero>
+                    <!-- Selection Carousel Main -->
+                    <SelectionCarouselMain bind:currentPage></SelectionCarouselMain>
 
                     <!-- Recipes to Inspire Component -->
                     <RecipesToInspire></RecipesToInspire>
