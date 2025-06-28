@@ -1,16 +1,3 @@
-<!-- Imports and Binds -->
-<script>
-    import Header from "$lib/components/Header/Header.svelte";
-    import SelectionCarouselMain from "$lib/components/SelectionCarouselMain/SelectionCarouselMain.svelte";
-    import RecipesToInspire from "$lib/components/RecipesToInspire/RecipesToInspire.svelte";
-    import FridgeIngredientsFeature from "$lib/components/FridgeIngredientsFeature/FridgeIngredientsFeature.svelte";
-    import Footer from "$lib/components/Footer/Footer.svelte";
-
-    let currentPage = "Articles";
-
-    let burgerClicked = false;
-</script>
-
 <!-- Recipes Page -->
 <div>
 
@@ -34,7 +21,7 @@
                 <div class="flex flex-col gap-4 md:gap-6 lg:gap-8 h-fit">
 
                     <!-- Selection Carousel Main -->
-                    <SelectionCarouselMain bind:currentPage></SelectionCarouselMain>
+                    <SelectionCarouselMain listOfArticles={listOfArticles} bind:currentPage></SelectionCarouselMain>
 
                     <!-- Recipes to Inspire Component -->
                     <RecipesToInspire></RecipesToInspire>
@@ -49,3 +36,48 @@
         </div>
     </div>
 </div>
+
+<!-- Imports and Binds -->
+<script lang="ts">
+    import Header from "$lib/components/Header/Header.svelte";
+    import SelectionCarouselMain from "$lib/components/SelectionCarouselMain/SelectionCarouselMain.svelte";
+    import RecipesToInspire from "$lib/components/RecipesToInspire/RecipesToInspire.svelte";
+    import FridgeIngredientsFeature from "$lib/components/FridgeIngredientsFeature/FridgeIngredientsFeature.svelte";
+    import Footer from "$lib/components/Footer/Footer.svelte";
+	import { onMount } from "svelte";
+
+    let currentPage = "Articles";
+
+    let burgerClicked = false;
+
+    let listOfArticles = [];
+
+    function getCookie(name: string): string | null {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+    }
+
+
+
+
+
+    // Write a function that'll make a POST req to the db with a specific article name to retrieve it
+
+       async function fetchArticles() {
+            try {
+                const response = await fetch('http://localhost:8000/api/articles');
+                const json = await response.json();
+                listOfArticles = json.data;
+
+                console.log(listOfArticles);
+            } catch (error) {
+                console.error('Error fetching articles:', error);
+            }
+        }
+
+    onMount(() => {
+        fetchArticles();
+    });
+</script>

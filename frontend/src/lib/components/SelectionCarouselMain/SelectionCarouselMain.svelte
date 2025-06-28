@@ -30,96 +30,191 @@
     <div class="w-full relative">
         <div class="swiper vertical-slide-carousel swiper-container relative h-96 landscape:md:h-124 landscape:lg:h-148">
             <div class="swiper-wrapper gap-4">
-                <div class="swiper-slide">
-                <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                    <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer"><img draggable="false" src="/selectionCarouselImages/mealCategories/breakfast.svg" class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
-                    <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">Breakfast</p></div>
-                    </div>
+
+            {#if currentPage == 'Recipes'}
+
+                {#if categorySelected === ''}
+                    {#each listOfChoices as choice}
+
+                        <div class="swiper-slide">
+                            <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
+                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => chooseCategory(`${choice.name}`)}><img draggable="false" src={choice.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{choice.name}</p></div>
+                            </div>
                         </div>
+
+                        <div class="swiper-pagination absolute green-500"></div>
+                    {/each}
+
+                {:else if typeSelected === ''}
+                    {#each listOfTypes as type}
+
+                        <div class="swiper-slide">
+                            <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
+                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectChoice(`${type.name}`)}><img draggable="false" src={type.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{type.name}</p></div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-pagination absolute green-500"></div>
+                    {/each}
+
+
+                {:else}
+                    {#each listOfChoices as choice}
+
+                        <div class="swiper-slide">
+                            <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
+                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectChoice(`${choice.recipe_name}`)}><img draggable="false" src={choice.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{choice.recipe_name}</p></div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-pagination absolute green-500"></div>
+                    {/each}
+
+                {/if}
+
+            {:else if currentPage === 'Diets'}
+
+                {#if dietSelected === ''}
+                    {#each listOfDiets as diet}
+                        <div class="swiper-slide">
+                            <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
+                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectCategory(`${diet.name}`)}><img draggable="false" src={diet.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                    <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{diet.name}</p></div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-pagination absolute green-500"></div>
+                    {/each}
+
+                {:else}
+                        {#each listOfDiets as diet}
                             <div class="swiper-slide">
                                 <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                                    <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer"><img draggable="false" src="/selectionCarouselImages/mealCategories/lunch.svg" class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
-                                    <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">Lunch</p></div>
+                                    <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectCategory(`${diet.recipe_name}`)}><img draggable="false" src={diet.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                    <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{diet.recipe_name}</p></div>
                                 </div>
                             </div>
+
+                            <div class="swiper-pagination absolute green-500"></div>
+                        {/each}
+
+                    {/if}
+
+                    {:else if currentPage === 'Articles'}
+                        {console.log('Rendering Articles, listOfArticles:', listOfArticles)}
+                        {#each listOfArticles as article}
                             <div class="swiper-slide">
-                        <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                            <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer"><img draggable="false" src="/selectionCarouselImages/mealCategories/dinner.svg" class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
-                            <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">Dinner</p></div>
-                        </div>
-                    </div>
-                </div>
-            <div class="swiper-pagination absolute green-500"></div>
+                                <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
+                                    <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectCategory(`${article.article_title}`)}><img draggable="false" src={article.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                        <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{article.article_title}</p></div>
+                                </div>
+                            </div>
+
+                        <div class="swiper-pagination absolute green-500"></div>
+                    {/each}
+                {/if}
+            </div>
         </div>
     </div>
 </div>
 
 <!--JAVASCRIPT CODE-->
-<script>
-   import { onMount } from 'svelte';
+<script lang="ts">
+    import { onMount } from 'svelte';
     import Swiper from 'swiper/bundle';
     import 'swiper/css/bundle';
 
     let swiperInstance;
 
+    // For Recipes Section
+    export let select;
+    export let selectCategory;
     export let currentPage;
+    export let listOfChoices = [];
+    export let listOfTypes = [];
 
-    function initSwiper(isLandscape) {
-        // Destroy existing instance if any
+    // For Diets Section
+    export let dietSelected: string = '';
+    export let listOfDiets = [];
+    export let finishedFetching = false;
+
+    // For Articles Section
+    export let listOfArticles: any[] = [];
+
+    console.log(listOfArticles);
+
+
+    function initSwiper(isLandscape: boolean) {
         if (swiperInstance) {
             swiperInstance.destroy(true, true);
         }
 
         swiperInstance = new Swiper('.swiper-container', isLandscape
             ? {
-                    loop: false,
-                    direction: 'horizontal',
-                    centeredSlides: false,
-                    slideToClickedSlide: true,
-                    spaceBetween: 10,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true
-                    },
-                    breakpoints: {
-                        1920: {
-                            slidesPerView: 4,
-                            spaceBetween: 30
-                        },
-                        1028: {
-                            slidesPerView: 2,
-                            spaceBetween: 10
-                        },
-                        990: {
-                            slidesPerView: 1,
-                            spaceBetween: 0
-                        }
-                    }
-                }
+                  loop: false,
+                  direction: 'horizontal',
+                  centeredSlides: false,
+                  slideToClickedSlide: true,
+                  spaceBetween: 10,
+                  pagination: {
+                      el: '.swiper-pagination',
+                      clickable: true
+                  },
+                  breakpoints: {
+                      1920: {
+                          slidesPerView: 4,
+                          spaceBetween: 30
+                      },
+                      1028: {
+                          slidesPerView: 2,
+                          spaceBetween: 10
+                      },
+                      990: {
+                          slidesPerView: 1,
+                          spaceBetween: 0
+                      }
+                  }
+              }
             : {
-                    loop: false,
-                    direction: 'vertical',
-                    mousewheel: {
-                        releaseOnEdges: true
-                    },
-                    spaceBetween: 30,
-                    grabCursor: true,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true
-                    }
-                });
+                  loop: false,
+                  direction: 'vertical',
+                  mousewheel: {
+                      releaseOnEdges: true
+                  },
+                  spaceBetween: 30,
+                  grabCursor: true,
+                  pagination: {
+                      el: '.swiper-pagination',
+                      clickable: true
+                  }
+              });
     }
+
+    // Setter function to change value in parent component
+    function selectChoice(value: string){
+        select(value);
+    }
+
+    // Setter function to change value in parent component
+    function chooseCategory(value: string){
+        selectCategory(value);
+    }
+
+    $: console.log('myVar changed:', finishedFetching);
 
     onMount(() => {
         const mql = window.matchMedia('(orientation: landscape)');
 
-        // Initial load
         initSwiper(mql.matches);
 
-        // Listen for orientation change
         mql.addEventListener('change', (e) => {
             initSwiper(e.matches);
         });
+
+        // categorySelected = '';
+        // typeSelected = '';
     });
 </script>
