@@ -59,10 +59,6 @@
         return null;
     }
 
-
-
-
-
     // Write a function that'll make a POST req to the db with a specific article name to retrieve it
 
        async function fetchArticles() {
@@ -70,8 +66,6 @@
                 const response = await fetch('http://localhost:8000/api/articles');
                 const json = await response.json();
                 listOfArticles = json.data;
-
-                console.log(listOfArticles);
             } catch (error) {
                 console.error('Error fetching articles:', error);
             }

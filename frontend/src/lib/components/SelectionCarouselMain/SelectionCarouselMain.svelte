@@ -38,7 +38,7 @@
 
                         <div class="swiper-slide">
                             <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => chooseCategory(`${choice.name}`)}><img draggable="false" src={choice.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" on:click={() => chooseCategory(`${choice.name}`)}><img draggable="false" src={choice.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
                                 <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{choice.name}</p></div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
 
                         <div class="swiper-slide">
                             <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectChoice(`${type.name}`)}><img draggable="false" src={type.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" on:click={() => selectChoice(`${type.name}`)}><img draggable="false" src={type.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
                                 <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{type.name}</p></div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
 
                         <div class="swiper-slide">
                             <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectChoice(`${choice.recipe_name}`)}><img draggable="false" src={choice.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" on:click={() => selectChoice(`${choice.recipe_name}`)}><img draggable="false" src={choice.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
                                 <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{choice.recipe_name}</p></div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                     {#each listOfDiets as diet}
                         <div class="swiper-slide">
                             <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectCategory(`${diet.name}`)}><img draggable="false" src={diet.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" on:click={() => selectCategory(`${diet.name}`)}><img draggable="false" src={diet.imagePath} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
                                     <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{diet.name}</p></div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                         {#each listOfDiets as diet}
                             <div class="swiper-slide">
                                 <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                                    <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectCategory(`${diet.recipe_name}`)}><img draggable="false" src={diet.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
+                                    <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" on:click={() => selectCategory(`${diet.recipe_name}`)}><img draggable="false" src={diet.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
                                     <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{diet.recipe_name}</p></div>
                                 </div>
                             </div>
@@ -104,15 +104,17 @@
                     {/if}
 
                     {:else if currentPage === 'Articles'}
-                        {console.log('Rendering Articles, listOfArticles:', listOfArticles)}
                         {#each listOfArticles as article}
-                            <div class="swiper-slide">
-                                <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
-                                    <span class="cursor-pointer h-full w-full"><button class="h-full w-full cursor-pointer" onclick={() => selectCategory(`${article.article_title}`)}><img draggable="false" src={article.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt=""></button></span>
-                                        <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl"><p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{article.article_title}</p></div>
+                            <button on:click={() => handleClick(article)}>
+                                <div class="swiper-slide">
+                                    <div class="cursor-pointer bg-indigo-50 rounded-2xl h-96 landscape:md:h-124 landscape:lg:h-148 flex justify-center items-center overflow-hidden relative">
+                                        <img draggable="false" src={article.image_path} class="cursor-pointer select-none h-full w-full object-cover" alt="">
+                                        <div class="absolute bottom-4 right-4 h-fit w-fit bg-stone-200 p-3 px-4 rounded-xl shadow-xl landscape:shadow-2xl">
+                                            <p class="text-black text-base landscape:text-2xl landscape:md:text-3xl font-bold select-none">{article.article_title}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-
+                            </button>
                         <div class="swiper-pagination absolute green-500"></div>
                     {/each}
                 {/if}
@@ -124,10 +126,12 @@
 <!--JAVASCRIPT CODE-->
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { sharedData } from '$lib/stores/store.js';
+     import { goto } from '$app/navigation';
     import Swiper from 'swiper/bundle';
     import 'swiper/css/bundle';
 
-    let swiperInstance;
+    let swiperInstance: Swiper;
 
     // For Recipes Section
     export let select;
@@ -135,16 +139,16 @@
     export let currentPage;
     export let listOfChoices = [];
     export let listOfTypes = [];
+    export let categorySelected: string;
+    export let typeSelected;
 
     // For Diets Section
     export let dietSelected: string = '';
     export let listOfDiets = [];
-    export let finishedFetching = false;
+    export const finishedFetching = false;
 
     // For Articles Section
     export let listOfArticles: any[] = [];
-
-    console.log(listOfArticles);
 
 
     function initSwiper(isLandscape: boolean) {
@@ -203,7 +207,11 @@
         selectCategory(value);
     }
 
-    $: console.log('myVar changed:', finishedFetching);
+    function handleClick(value: string){
+        sharedData.set({data: value});
+
+        goto(`/view-content/${value.article_slug}`);
+    }
 
     onMount(() => {
         const mql = window.matchMedia('(orientation: landscape)');
