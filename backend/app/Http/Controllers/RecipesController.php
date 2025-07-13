@@ -39,4 +39,14 @@ class RecipesController extends Controller
             'data' => $recipes
         ]);
     }
+
+     public function getRecipes(): JsonResponse
+    {
+        $recipes = Recipes::all();
+
+        return response()->json([
+            'success' => true,
+            'data' => $recipes
+        ]);
+    }
 }

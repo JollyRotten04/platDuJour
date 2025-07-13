@@ -10,6 +10,8 @@ Route::post('/login', [LoginAuth::class, 'login']);
 
 Route::post('/recipes', [RecipesController::class, 'fetchRecipes']);
 
+Route::get('/recipes', [RecipesController::class, 'getRecipes']);
+
 Route::get('/articles', [ArticlesController::class, 'fetchArticles']);
 
 // In routes/api.php

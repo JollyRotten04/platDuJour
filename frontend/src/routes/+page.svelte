@@ -1,22 +1,3 @@
-<!-- Imports -->
-<script lang="ts">
-
-    // Components
-    import Header from "$lib/components/Header/Header.svelte";
-    import MobileNavbarPopup from "$lib/components/MobileNavbarPopup/MobileNavbarPopup.svelte";
-    import SlideshowHero from "$lib/components/SlideshowHero/SlideshowHero.svelte";
-    import RecipesToInspire from "$lib/components/RecipesToInspire/RecipesToInspire.svelte";
-    import FridgeIngredientsFeature from "$lib/components/FridgeIngredientsFeature/FridgeIngredientsFeature.svelte";
-    import Footer from "$lib/components/Footer/Footer.svelte";
-
-    // Variable to check if burger icon was clicked
-    let burgerClicked = false;
-
-    // Current page
-    let currentPage = "Home";
-
-</script>
-
 <!-- Master Container -->
 <div>
     {#if burgerClicked}
@@ -61,3 +42,30 @@
         </div>
     </div>
 </div>
+
+<!-- Imports -->
+<script lang="ts">
+
+    // Components
+    import Header from "$lib/components/Header/Header.svelte";
+    import MobileNavbarPopup from "$lib/components/MobileNavbarPopup/MobileNavbarPopup.svelte";
+    import SlideshowHero from "$lib/components/SlideshowHero/SlideshowHero.svelte";
+    import RecipesToInspire from "$lib/components/RecipesToInspire/RecipesToInspire.svelte";
+    import FridgeIngredientsFeature from "$lib/components/FridgeIngredientsFeature/FridgeIngredientsFeature.svelte";
+    import Footer from "$lib/components/Footer/Footer.svelte";
+    import { loginCheck } from '$lib/stores/loginCheckStore.js';
+    import { onMount } from "svelte";
+
+    // Variable to check if burger icon was clicked
+    let burgerClicked = false;
+
+    // Current page
+    let currentPage = "Home";
+
+    let loggedIn = false;
+
+    onMount(() => {
+        loginCheck.set({data: loggedIn});
+    });
+
+</script>

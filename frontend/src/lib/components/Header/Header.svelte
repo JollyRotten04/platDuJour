@@ -1,11 +1,21 @@
 <!-- Imports, binds, and components -->
 <script lang="ts">
 	import { onMount } from "svelte";
+    import { sharedData } from "$lib/stores/store";
+    import { pageCheck } from '$lib/stores/pageCheck';
+	import { get } from 'svelte/store';
+
 
     export let burgerClicked: Boolean;
     export let currentPage: string;
+    $: selectedRecipe = get(pageCheck)?.data;
+    export let articleSelected: boolean = false;
+    let selectedArticle: string = ''; 
 
-    console.log(currentPage);
+    // Always reset selections first
+    // selectedRecipe = false;
+    // selectedArticle = '';
+    // console.log(currentPage);
 
     // Logic to check if burger icon was clicked
     function clickedIcon(){
@@ -26,6 +36,10 @@
         let diets = document.getElementById('dietsOption');
         let articles = document.getElementById('articlesOption');
         let login = document.getElementById('loginOption');
+
+        // console.log('Selected Page: ', currentPage);
+        console.log('Selected Recipe: ', selectedRecipe);
+        console.log('Selected Article: ', articleSelected);
 
         switch(currentPage){
 
@@ -67,6 +81,23 @@
                 diets?.classList.remove('font-semibold', 'underline');
                 articles?.classList.remove('font-semibold', 'underline');
                 home?.classList.remove('font-semibold', 'underline');
+                break;
+
+            case "View-Content":
+                // Clear all highlights first
+                home?.classList.remove('font-semibold', 'underline');
+                diets?.classList.remove('font-semibold', 'underline');
+                articles?.classList.remove('font-semibold', 'underline');
+                recipes?.classList.remove('font-semibold', 'underline');
+                login?.classList.remove('font-semibold', 'underline');
+
+                // Apply highlight based on what's selected
+                if (selectedRecipe) {
+                    recipes?.classList.add('font-semibold', 'underline');
+                    pageCheck.set({ data: false });
+                } else if (articleSelected) {
+                    articles?.classList.add('font-semibold', 'underline');
+                }
                 break;
         }
     }

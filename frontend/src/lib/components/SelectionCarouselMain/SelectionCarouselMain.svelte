@@ -127,7 +127,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { sharedData } from '$lib/stores/store.js';
-     import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation';
     import Swiper from 'swiper/bundle';
     import 'swiper/css/bundle';
 
@@ -146,6 +146,7 @@
     export let dietSelected: string = '';
     export let listOfDiets = [];
     export const finishedFetching = false;
+    export let articleSelected: boolean = false;
 
     // For Articles Section
     export let listOfArticles: any[] = [];
@@ -209,6 +210,12 @@
 
     function handleClick(value: string){
         sharedData.set({data: value});
+
+        if(listOfArticles !== null){
+
+            console.log('List: ', listOfArticles);
+            articleSelected = true;
+        }
 
         goto(`/view-content/${value.article_slug}`);
     }

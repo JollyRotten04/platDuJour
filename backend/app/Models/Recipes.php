@@ -11,5 +11,5 @@ class Recipes extends Model
     // Explicitly set the table name
     protected $table = 'recipes';
 
-    protected $fillable = ['recipe_name', 'recipe_description', 'recipe_ingredients', 'recipe_ratings', 'recipe_cooktime', 'recipe_category', 'recipe_type']; // adjust as needed
+    protected $fillable = ['recipe_name', 'recipe_description', 'recipe_ingredients', 'recipe_ratings', 'recipe_cooktime', 'recipe_category', 'recipe_type', 'recipe_calories', 'steps']; // adjust as needed
 }

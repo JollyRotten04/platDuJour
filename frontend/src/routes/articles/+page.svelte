@@ -5,7 +5,7 @@
     <div draggable="false" class="h-dvh max-h-dvh w-full max-w-dvw overflow-x-hidden overflow-y-auto p-4 pt-16 bg-[#e3f0eb] relative">
 
         <!-- Header -->
-        <Header bind:currentPage bind:burgerClicked></Header>
+        <Header bind:currentPage bind:articleSelected bind:burgerClicked></Header>
 
         <!-- Main Contents Container -->
         <div draggable="false" class="h-full w-full max-w-full absolute left-0 pt-4 sm:pt-6 md:pt-6 lg:pt-6">
@@ -21,7 +21,7 @@
                 <div class="flex flex-col gap-4 md:gap-6 lg:gap-8 h-fit">
 
                     <!-- Selection Carousel Main -->
-                    <SelectionCarouselMain listOfArticles={listOfArticles} bind:currentPage></SelectionCarouselMain>
+                    <SelectionCarouselMain listOfArticles={listOfArticles}  bind:articleSelected bind:currentPage></SelectionCarouselMain>
 
                     <!-- Recipes to Inspire Component -->
                     <RecipesToInspire></RecipesToInspire>
@@ -52,11 +52,19 @@
 
     let listOfArticles = [];
 
+    let articleSelected = false;
+
     function getCookie(name: string): string | null {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
         if (parts.length === 2) return parts.pop().split(';').shift();
         return null;
+    }
+
+    export function setArticleSelected(value: boolean){
+
+        console.log('Selecta Article: ', value);
+        articleSelected = value;
     }
 
     // Write a function that'll make a POST req to the db with a specific article name to retrieve it
